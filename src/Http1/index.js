@@ -1,7 +1,7 @@
 import React from "react";
 import { listToMatrix, pad } from "../utils";
 
-const ROW_LENGTH = 10;
+const ROW_LENGTH = 9;
 
 function Http1() {
   const [imagesUrls, setImages] = React.useState([]);
@@ -11,13 +11,13 @@ function Http1() {
 
   async function handleClick() {
     startTime.current = new Date().getTime();
-    const urls = Array.from(Array(100).keys()).map((i) => {
+    const urls = Array.from(Array(81).keys()).map((i) => {
       const row = Math.floor(i / ROW_LENGTH);
       const column = i % ROW_LENGTH;
-      const id = `${pad(row + 1, 2)}_${pad(column + 1, 2)}`;
-      return `https://1dc7-2a01-cb00-3d7-4800-7187-c3a1-cfd9-edb5.ngrok.io/api/images/${id}`;
+      const id = `${pad(row + 1, 1)}${pad(column + 1, 1)}`;
+      return `https://localhost:3001/api/images/${id}`;
     });
-    setImages(listToMatrix(urls, 10));
+    setImages(listToMatrix(urls, 9));
   }
 
   const http2LoadingTime = Math.max(...loadingTimes.flat(2));
